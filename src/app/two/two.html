@@ -1,0 +1,56 @@
+<!-- #Phase 1 -->
+
+<!-- <div style="width:400px">
+    <div class="mb-4">
+        <small>Your question was:</small>
+        <h4>{{appValues.question}}</h4>
+        <input type="text" placeholder="Add answer" class="form-control" #answer />
+        <button class="btn btn-outline-info btn-block" (click)="onAddAnswer(answer)">
+            Add
+        </button>
+        <button type="submit" class="btn btn-outline-info btn-block" (click)="onSubmit()">
+            Make a decision
+        </button>
+    </div>
+</div> -->
+
+
+<!-- #Phase 2 -->
+
+<div style="width:400px">
+    <div class="mb-4">
+        <small>Your question was:</small>
+        <h4>{{appValues.question}}</h4>
+        @if(appValues.mode) {
+        <div class="alert alert-info mt-2">
+            You are in custom mode. Please add your own answers.
+        </div>
+        <div>
+            <input type="text" class="form-control mb-2" placeholder="Add your answer here !!"
+                (keyup.enter)="addCustom(answer)" #answer />
+            <button type="button" class="btn btn-outline-info btn-block" (click)="addCustom(answer)">
+                Add
+            </button>
+        </div>
+        } @else {
+        <div class="alert alert-warning mt-2">
+            Plese use custom mode to add your own answers.
+        </div>
+        }
+        <div>
+            <span *ngFor="let custom of appValues.custom" class="btn btn-outline-primary btn-sm mr-2 mb-2">
+                {{ custom }}
+            </span>
+        </div>
+        <div class="form-group">
+            @if(!appValues.mode) {
+            <button type="button" class="btn btn-outline-info btn-block" (click)="changeMode()">
+                I want to add my own
+            </button>
+            }
+            <button type="button" class="btn btn-outline-info btn-block" (click)="getResults()">
+                Make a decision
+            </button>
+        </div>
+    </div>
+</div>
